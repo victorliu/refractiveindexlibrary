@@ -186,6 +186,8 @@ class Material:
 			k = self.extinctionCoefficient.getExtinctionCoefficient(wavelength_um, bounds_error=bounds_error)
 		return n + 1j * k
 
+	def get_wavelength_range(self) -> tuple[float, float]:
+		return (self.refractiveIndex.rangeMin, self.refractiveIndex.rangeMax)
 
 class RefractiveIndexData:
 	"""Abstract RefractiveIndex class"""
