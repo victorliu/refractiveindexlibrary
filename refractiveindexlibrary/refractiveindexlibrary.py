@@ -151,7 +151,7 @@ class Material:
 				wavelengths = np.linspace(rangeMin, rangeMax, 1000)
 				self.originalData = {
 					'wavelength (um)': wavelengths,
-					'n' : self.refractiveIndex.getRefractiveIndex(wavelength=wavelengths*1000)
+					'n' : self.refractiveIndex.getRefractiveIndex(wavelength_um=wavelengths)
 				}
 				
 
