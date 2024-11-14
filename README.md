@@ -1,61 +1,47 @@
-# Easy Python interface to RefractiveIndex database
+# Python interface to RefractiveIndex database
 
-The original database<br>
-https://github.com/polyanskiy/refractiveindex.info-database
+This package provides a programmatic interface to the [refractiveindex.info](https://refractiveindex.info) database, as well as allowing users to import their own libraries in the same database format.
 
-Database files parsing was made with a modified version of `refractiveIndex.py` from [PyTMM project](https://github.com/kitchenknif/PyTMM) by [Pavel Dmitriev](https://github.com/kitchenknif).
+This package is built off of the [refractiveindex](https://github.com/toftul/refractiveindex) package.
 
 ## Installation
 
 ```
-pip install refractiveindex
+pip install refractiveindexlibrary
 ```
+
+In order to use the refractiveindex.info data, you must also clone or download the [database repository](https://github.com/polyanskiy/refractiveindex.info-database).
 
 ## Usage
 
 
 ```python
-from refractiveindex import RefractiveIndexMaterial
+from refractiveindexlibrary import Library
 
-SiO = RefractiveIndexMaterial(shelf='main', book='SiO', page='Hass')
+lib = Library()
 
-wavelength_nm = 600  # [nm]
+# Import the refractiveindex.info database
+lib.add_database(dbpath = os.path.join(os.path.expanduser('~'), 'refractiveindex.info-database', 'database'))
 
-SiO.get_epsilon(wavelength_nm)
-# (3.8633404437869827+0.003931076923076923j)
+shelves = lib.get_shelves()
+print(shelves)
 
-SiO.get_refractive_index(wavelength_nm)
+shelf = shelves[0]
+books = lib.get_books(shelf)
+print(books)
+
+book = books[0]
+pages = lib.get_pages(shelf, book)
+print(pages)
+
+
+SiO = lib.get_material(shelf='main', book='SiO', page='Hass')
+
+wavelength_um = 0.600
+
+SiO.get_n(wavelength_um)
 # (1.96553846)
 
-SiO.get_extinction_coefficient(wavelength_nm)
+SiO.get_k(wavelength_um)
 # (0.001)
 ```
-
-Notes: 
-- here the time dependence is assumed to be $\mathrm{e}^{-\mathrm{i} \omega t}$, so $\mathrm{Im}(\varepsilon) > 0$ is responsible for the losses.
-- if there is a space in the name, one should write underscore instead of it, i.e. not `page='Rodriguez-de Marcos'` but `page='Rodriguez-de_Marcos'`.
-
-
-## How to get material page names
-
-You can find the proper “page” name by hovering your cursor on the link in the Data section
-
-![How to get page name](./fig/link.png)
-
-Or you can look up folders in this repository<br>
-https://github.com/polyanskiy/refractiveindex.info-database
-
-## Simular projects for Julia
-
-Julia interface to refractiveindex.info database<br>
-https://github.com/stillyslalom/RefractiveIndex.jl
-
-## Possible problems
-
-Refractive index changed naming in its database, please upgrade the package
-```shell
-pip install --upgrade refractiveindex
-```
-and remove database folder at `~/.refractiveindex.info-database`.
-
-The database is currently limited to dispersion and extinction ('n-k') data.

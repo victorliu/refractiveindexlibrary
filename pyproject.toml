@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "refractiveindex"
-version = "0.0.5"
+name = "refractiveindexlibrary"
+version = "0.0.1"
 description = ""
-authors = ["Ivan Toftul <toftul.ivan@gmail.com>"]
+authors = ["Victor Liu <victor.liu@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
