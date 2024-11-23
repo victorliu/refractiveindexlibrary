@@ -182,7 +182,7 @@ class Material:
 		k = 0
 		if self.refractiveIndex is not None:
 			n = self.refractiveIndex.getRefractiveIndex(wavelength_um, bounds_error=bounds_error)
-		if self.extinctionCoefficient is None:
+		if self.extinctionCoefficient is not None:
 			k = self.extinctionCoefficient.getExtinctionCoefficient(wavelength_um, bounds_error=bounds_error)
 		return n + 1j * k
 
