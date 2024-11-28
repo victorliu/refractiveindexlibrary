@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "refractiveindexlibrary"
-version = "0.0.3"
+version = "0.0.4"
 description = ""
 authors = ["Victor Liu <victor.liu@gmail.com>"]
 readme = "README.md"
