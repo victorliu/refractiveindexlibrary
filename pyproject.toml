@@ -6,10 +6,9 @@ authors = ["Victor Liu <victor.liu@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.9"
 scipy = "^1.9.3"
 pyyaml = "^6.0"
-
 
 [build-system]
 requires = ["poetry-core"]
