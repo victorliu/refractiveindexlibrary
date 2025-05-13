@@ -22,6 +22,7 @@ class Library:
 			catalog = yaml.load(f, Loader=BaseLoader)
 
 		for sh in catalog:
+			if 'DIVIDER' in sh: continue
 			curshelf = {}
 			self._index[sh['SHELF']] = curshelf
 			for b in sh['content']:
