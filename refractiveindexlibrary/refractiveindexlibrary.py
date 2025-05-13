@@ -33,7 +33,7 @@ class Library:
 					if 'DIVIDER' in p: continue
 					curbook[p['PAGE']] = {
 						'name': p['name'],
-						'filename': os.path.join(dbpath, 'data-nk', os.path.normpath(p['data']))
+						'filename': os.path.join(dbpath, 'data', os.path.normpath(p['data']))
 					}
 
 	def get_shelves(self) -> list[str]:
